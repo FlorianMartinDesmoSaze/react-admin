@@ -1,12 +1,15 @@
 import * as React from "react";
 import { useRecordContext } from "react-admin";
+import { Link } from "@mui/material";
+import LaunchIcon from "@mui/icons-material/Launch"
 
 const MyUrlField = ({ source }) => {
     const record = useRecordContext();
     return record ? (
-        <a href={record[source]}>
+        <Link href={record[source]} sx={{ textDecoration: 'none' }}>
             {record[source]}
-            </a>
+            <LaunchIcon sx={{ width: "0.5em", height: "0.5em", paddingLeft: 2 }}></LaunchIcon>
+        </Link>
     ) : null;
 }
 
