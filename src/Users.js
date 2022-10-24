@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Datagrid, EmailField, List, TextField, UrlField } from 'react-admin';
+import { Datagrid, EmailField, List, TextField/*, UrlField*/ } from 'react-admin';
 import MyUrlField from "./MyUrlField";
 
 export const UserList = () => (
