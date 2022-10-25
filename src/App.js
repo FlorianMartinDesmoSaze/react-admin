@@ -6,11 +6,12 @@ import { UserList } from "./users";
 import PostIcon from '@mui/icons-material/Book';
 import UserIcon from '@mui/icons-material/Group';
 import Dashboard from './Dashboard'
+import authProvider from './authProvider';
 
 const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
 
 const App = () => (
-  <Admin dashboard={Dashboard} dataProvider={dataProvider}>
+  <Admin dashboard={Dashboard} authProvider={authProvider} dataProvider={dataProvider}>
     {/* <Resource name="posts" list={ListGuesser} /> */}
     {/* <Resource name="edit" list={PostEdit} edit={EditGuesser} /> */}
     {/* <Resource name="posts" list={PostList} edit={EditGuesser} /> */}
