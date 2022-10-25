@@ -19,8 +19,13 @@ const PostTitle = () => {
     return <span>{record ? `"${record.title}"` : ''}</span>
 }
 
+const postFilters = [
+    <TextInput source="q" label="Search" alwaysOn />,
+    <ReferenceInput source="userId" label="User" reference="users" />
+]
+
 export const PostList = props => (
-    <List>
+    <List filters={postFilters}>
         <Datagrid rowClick="edit">
             <TextField source="id" />
             <ReferenceField source="userId" reference="users" />
