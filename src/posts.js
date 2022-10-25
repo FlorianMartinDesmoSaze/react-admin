@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useRecordContext } from "react-admin";
 
 import {
     List,
@@ -11,8 +10,11 @@ import {
     SimpleForm,
     ReferenceInput,
     TextInput,
-    Create
+    Create,
+    useRecordContext,
+    SimpleList
 } from "react-admin";
+import { useMediaQuery } from "@mui/material";
 
 const PostTitle = () => {
     const record = useRecordContext();
@@ -24,17 +26,29 @@ const postFilters = [
     <ReferenceInput source="userId" label="User" reference="users" />
 ]
 
-export const PostList = props => (
-    <List filters={postFilters}>
-        <Datagrid rowClick="edit">
-            <TextField source="id" />
-            <ReferenceField source="userId" reference="users" />
-            <TextField source="title" />
-            {/* <TextField source="body" /> */}
-            <EditButton />
-        </Datagrid>
-    </List>
-);
+export const PostList = () => {
+    const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
+
+    return (
+        <List filters={postFilters}>
+            {isSmall ?
+            ( <SimpleList
+                primaryText={record => record.title}
+                secondaryText={record => (
+                    <ReferenceField label="User" source="userId" reference="users" />
+                )}
+            /> ) :
+            ( <Datagrid rowClick="edit">
+                <TextField source="id" />
+                <ReferenceField source="userId" reference="users" />
+                <TextField source="title" />
+                {/* <TextField source="body" /> */}
+                <EditButton />
+            </Datagrid> )
+            }
+        </List>
+    )
+}
 
 export const PostEdit = props => (
     <Edit title={<PostTitle />}>
